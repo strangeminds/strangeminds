@@ -33,4 +33,5 @@ spec:
     - helm
     - kustomize
     - gitops
+    - ci/cd
 ```
