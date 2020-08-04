@@ -14,7 +14,7 @@ metadata:
 spec: 
   hobbies: 
     - gaming
-    - roll-playing-games
+    - role-playing-games
     - camping
     - biking
   learing: 
