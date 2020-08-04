@@ -32,4 +32,5 @@ spec:
     - kops
     - helm
     - kustomize
+    - gitops
 ```
