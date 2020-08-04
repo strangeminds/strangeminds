@@ -17,7 +17,7 @@ spec:
     - role-playing-games
     - camping
     - biking
-  learing: 
+  learning: 
     - certified-kubernetes-administrator
     - serverless
   occupation: 
