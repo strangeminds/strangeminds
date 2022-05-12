@@ -19,7 +19,8 @@ spec:
     - biking
   learning: 
     - certified-kubernetes-administrator
-    - serverless
+    - machine-learning
+    - python
   occupation: 
     - infrastructure-engineer
   skills: 
@@ -29,7 +30,7 @@ spec:
     - docker
     - terraform
     - ansible
-    - chef
+    - opentelemetry
     - kops
     - helm
     - kustomize
