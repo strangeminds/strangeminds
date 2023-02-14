@@ -23,6 +23,7 @@ spec:
     - python
   occupation: 
     - infrastructure-engineer
+    - devops
   skills: 
     - kubernetes
     - aws
@@ -35,5 +36,7 @@ spec:
     - helm
     - kustomize
     - gitops
-    - ci/cd
+    - gitlab
+    - argocd
+    - flux
 ```
