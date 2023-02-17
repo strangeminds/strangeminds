@@ -15,11 +15,13 @@ spec:
   hobbies: 
     - gaming
     - role-playing-games
-    - camping
-    - biking
+    - old-school-arcade-machines
+    - raspberry-pi-clusters
+    - home-automation
   learning: 
     - certified-kubernetes-administrator
     - machine-learning
+    - ai
     - python
   occupation: 
     - infrastructure-engineer
