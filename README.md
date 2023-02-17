@@ -1,4 +1,4 @@
-### Hi, I'm Matt Burgess, a 🚀 Lead Infrastructure Engineer from Maine.
+### Hi, I'm Matt Burgess, I live in Maine and do 🚀 DevOps software engineering.
 
 [![Github](https://img.shields.io/badge/-Github-000?style=flat&logo=Github&logoColor=white)](https://github.com/strangeminds)
 [![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/burgessmatthew/)
