@@ -18,14 +18,15 @@ spec:
     - old-school-arcade-machines
     - raspberry-pi-clusters
     - home-automation
-  learning: 
-    - certified-kubernetes-administrator
+  learning:
     - machine-learning
     - ai
     - python
   occupation: 
     - infrastructure-engineer
     - devops
+  certificates:
+    - CKA
   skills: 
     - kubernetes
     - aws
