@@ -14,19 +14,19 @@ metadata:
 spec: 
   hobbies: 
     - gaming
-    - role-playing-games
-    - old-school-arcade-machines
-    - raspberry-pi-clusters
-    - home-automation
+    - rolePlayingGames
+    - oldSchoolArcadeMachines
+    - raspberryPiClusters
+    - homeAutomation
   learning:
-    - machine-learning
     - ai
+    - machineLearning
     - python
   occupation: 
-    - infrastructure-engineer
+    - infrastructureEngineer
     - devops
   certificates:
-    - CKA
+    - certifiedKubernetesAdministrator
   skills: 
     - kubernetes
     - aws
