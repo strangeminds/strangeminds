@@ -13,20 +13,20 @@ metadata:
   namespace: maine
 spec: 
   hobbies: 
-    - gaming
-    - rolePlayingGames
-    - oldSchoolArcadeMachines
-    - raspberryPiClusters
-    - homeAutomation
+    - video-games
+    - role-playing-games
+    - old-school-arcade-machines
+    - raspberry-pi-clusters
+    - home-automation
   learning:
     - ai
-    - machineLearning
+    - machine-learning
     - python
   occupation: 
-    - infrastructureEngineer
+    - infrastructure-engineer
     - devops
   certificates:
-    - certifiedKubernetesAdministrator
+    - certified-kubernetes-administrator
   skills: 
     - kubernetes
     - aws
