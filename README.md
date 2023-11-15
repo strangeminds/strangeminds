@@ -11,7 +11,9 @@ kind: AboutMe
 metadata: 
   name: "Matt Burgess"
   namespace: maine
-spec: 
+spec:
+  certificates:
+    - certified-kubernetes-administrator
   hobbies: 
     - video-games
     - role-playing-games
@@ -26,8 +28,6 @@ spec:
     - infrastructure-engineer
     - cloud-engineer
     - devops-engineer
-  certificates:
-    - certified-kubernetes-administrator
   skills: 
     - kubernetes
     - aws
