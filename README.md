@@ -45,4 +45,5 @@ spec:
     - argocd
     - flux
     - vault
+    - vector-db
 ```
