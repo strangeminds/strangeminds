@@ -21,7 +21,8 @@ spec:
     - raspberry-pi-clusters
     - home-automation
   learning:
-    - ai
+    - generative-ai
+    - large-language-models
     - machine-learning
     - python
   occupation: 
