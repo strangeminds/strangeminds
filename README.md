@@ -25,19 +25,21 @@ spec:
     - large-language-models
     - machine-learning
     - python
-  occupation: 
+  occupation:
+    - software-engineering-manager
     - infrastructure-engineer
     - cloud-engineer
     - devops-engineer
   skills: 
     - kubernetes
     - aws
+    - azure
     - gcp
     - docker
     - terraform
     - ansible
+    - crossplane
     - opentelemetry
-    - kops
     - helm
     - kustomize
     - gitops
