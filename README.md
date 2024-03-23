@@ -14,6 +14,7 @@ metadata:
 spec:
   certificates:
     - certified-kubernetes-administrator
+    - certified-kubernetes-application-developer
   hobbies: 
     - video-games
     - role-playing-games
