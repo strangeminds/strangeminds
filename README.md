@@ -12,7 +12,7 @@ metadata:
   name: "Matt Burgess"
   namespace: maine
 spec:
-  certificates:
+  certifications:
     - certified-kubernetes-administrator
     - certified-kubernetes-application-developer
   hobbies: 
