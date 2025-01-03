@@ -8,45 +8,44 @@
 --- 
 apiVersion: v1
 kind: AboutMe
-metadata: 
+metadata:
   name: "Matt Burgess"
   namespace: maine
 spec:
   certifications:
     - certified-kubernetes-administrator
     - certified-kubernetes-application-developer
-  hobbies: 
-    - video-games
-    - role-playing-games
+  hobbies:
+    - home-automation
     - old-school-arcade-machines
     - raspberry-pi-clusters
-    - home-automation
+    - role-playing-games
+    - video-games
   learning:
     - generative-ai
+    - indie-game-dev
     - large-language-models
     - machine-learning
-    - python
   occupation:
-    - software-engineering-manager
-    - infrastructure-engineer
     - cloud-engineer
     - devops-engineer
-  skills: 
-    - kubernetes
+    - infrastructure-engineer
+    - software-engineering-manager
+  skills:
+    - ansible
+    - argocd
     - aws
     - azure
-    - gcp
-    - docker
-    - terraform
-    - ansible
     - crossplane
-    - opentelemetry
-    - helm
-    - kustomize
-    - gitops
-    - gitlab
-    - argocd
     - flux
+    - gitlab
+    - gcp
+    - helm
+    - kubernetes
+    - kustomize
+    - opentelemetry
+    - teleport
+    - terraform
     - vault
     - vector-db
 ```
