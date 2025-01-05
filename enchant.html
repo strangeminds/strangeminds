@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magic Item Enchanter</title>
+    <style>
+        /* style */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2c3e50;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #gameCanvas {
+            border: 2px solid #34495e;
+            background-color: #34495e;
+            margin: 20px;
+            cursor: pointer;
+        }
+        #status {
+            font-size: 18px;
+            margin: 10px;
+            color: #ecf0f1;
+            height: 50px;
+            text-align: center;
+        }
+        .controls {
+            margin: 10px;
+            padding: 10px;
+            background-color: #34495e;
+            border-radius: 5px;
+        }
+        #stats {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px;
+            width: 600px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+        .stat-item {
+            background-color: #2c3e50;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .odds-display {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #3498db;
+        }
+        @keyframes enchantAttempt {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .enchanting {
+            animation: enchantAttempt 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Magic Item Enchanter</h1>
+    <div class="controls">
+        <button id="resetBtn">Reset Game</button>
+    </div>
+    <div id="status">Click on items to attempt enchantment</div>
+    <div class="odds-display">Current Success Rate: 33% (1 in 3 chance)</div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div id="stats">
+        <h3>Enhancement Statistics</h3>
+        <div class="stat-grid" id="statsGrid"></div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const status = document.getElementById('status');
+        const resetBtn = document.getElementById('resetBtn');
+        const statsGrid = document.getElementById('statsGrid');
+
+        // Icon paths
+        const itemIcons = {
+            sword: (x, y, scale = 1) => {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.scale(scale, scale);
+                ctx.beginPath();
+                ctx.moveTo(0, 20);
+                ctx.lineTo(10, 0);
+                ctx.lineTo(20, 20);
+                ctx.lineTo(10, 40);
+                ctx.closePath();
+                ctx.moveTo(10, 40);
+                ctx.lineTo(10, 50);
+                ctx.stroke();
+                ctx.restore();
+            },
+            staff: (x, y, scale = 1) => {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.scale(scale, scale);
+                ctx.beginPath();
+                ctx.moveTo(10, 0);
+                ctx.lineTo(10, 50);
+                ctx.moveTo(0, 5);
+                ctx.arc(10, 5, 10, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+            },
+            ring: (x, y, scale = 1) => {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.scale(scale, scale);
+                ctx.beginPath();
+                ctx.arc(10, 10, 8, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+            },
+            amulet: (x, y, scale = 1) => {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.scale(scale, scale);
+                ctx.beginPath();
+                ctx.arc(10, 15, 10, 0, Math.PI * 2);
+                ctx.moveTo(10, 0);
+                ctx.lineTo(10, 5);
+                ctx.stroke();
+                ctx.restore();
+            },
+            shield: (x, y, scale = 1) => {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.scale(scale, scale);
+                ctx.beginPath();
+                ctx.moveTo(0, 10);
+                ctx.lineTo(10, 0);
+                ctx.lineTo(20, 10);
+                ctx.lineTo(20, 30);
+                ctx.lineTo(10, 40);
+                ctx.lineTo(0, 30);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.restore();
+            }
+        };
+
+        // Game state
+        const items = [
+            { x: 100, y: 100, width: 60, height: 60, color: '#e74c3c', name: 'Sword', icon: 'sword', level: 0, maxLevel: 0, attempts: 0, successes: 0 },
+            { x: 250, y: 100, width: 60, height: 60, color: '#3498db', name: 'Staff', icon: 'staff', level: 0, maxLevel: 0, attempts: 0, successes: 0 },
+            { x: 400, y: 100, width: 60, height: 60, color: '#2ecc71', name: 'Ring', icon: 'ring', level: 0, maxLevel: 0, attempts: 0, successes: 0 },
+            { x: 175, y: 250, width: 60, height: 60, color: '#f1c40f', name: 'Amulet', icon: 'amulet', level: 0, maxLevel: 0, attempts: 0, successes: 0 },
+            { x: 325, y: 250, width: 60, height: 60, color: '#9b59b6', name: 'Shield', icon: 'shield', level: 0, maxLevel: 0, attempts: 0, successes: 0 }
+        ];
+
+        function drawItem(item) {
+            // Draw background
+            ctx.fillStyle = item.color;
+            ctx.fillRect(item.x, item.y, item.width, item.height);
+            
+            // Draw icon
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+            itemIcons[item.icon](item.x + 20, item.y + 5, 1);
+            
+            // Draw enhancement level
+            ctx.fillStyle = 'white';
+            ctx.font = '16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(`+${item.level}`, item.x + item.width/2, item.y + item.height + 40);
+
+            // Draw item name
+            ctx.font = '14px Arial';
+            ctx.fillText(item.name, item.x + item.width/2, item.y + item.height + 20);
+
+            // Add glow effect based on enhancement level
+            if (item.level > 0) {
+                ctx.strokeStyle = `rgba(241, 196, 15, ${item.level * 0.2})`;
+                ctx.lineWidth = item.level * 2;
+                ctx.strokeRect(item.x - 5, item.y - 5, item.width + 10, item.height + 10);
+            }
+        }
+
+        // Update status grid with item stats
+        function updateStats() {
+            statsGrid.innerHTML = items.map(item => `
+                <div class="stat-item">
+                    <strong>${item.name}</strong><br>
+                    Current: +${item.level}<br>
+                    Highest: +${item.maxLevel}<br>
+                    Success Rate: ${item.attempts ? Math.round((item.successes / item.attempts) * 100) : 0}%<br>
+                    Attempts: ${item.attempts}
+                </div>
+            `).join('');
+        }
+
+        function animateEnchantment(item) {
+            const element = document.createElement('div');
+            element.style.position = 'absolute';
+            element.style.left = `${item.x + canvas.offsetLeft}px`;
+            element.style.top = `${item.y + canvas.offsetTop}px`;
+            element.style.width = `${item.width}px`;
+            element.style.height = `${item.height}px`;
+            element.style.backgroundColor = item.color;
+            element.classList.add('enchanting');
+            document.body.appendChild(element);
+            
+            setTimeout(() => {
+                document.body.removeChild(element);
+            }, 500);
+        }
+
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            items.forEach(drawItem);
+        }
+
+        function attemptEnchant(item) {
+            const roll = Math.floor(Math.random() * 3) + 1;
+            const currentLevel = item.level;
+            
+            item.attempts++;
+            animateEnchantment(item);
+
+            if (roll === 1) {
+                item.level += 1;
+                item.successes++;
+                if (item.level > item.maxLevel) {
+                    item.maxLevel = item.level;
+                }
+                status.textContent = `Success! ${item.name} enhanced from +${currentLevel} to +${item.level}!`;
+                status.style.color = '#2ecc71';
+            } else {
+                item.level = 0;
+                status.textContent = `Failed! ${item.name} reset from +${currentLevel} back to +0`;
+                status.style.color = '#e74c3c';
+            }
+            
+            updateStats();
+            drawGame();
+        }
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            items.forEach(item => {
+                if (x >= item.x && x <= item.x + item.width &&
+                    y >= item.y && y <= item.y + item.height) {
+                    attemptEnchant(item);
+                }
+            });
+        });
+
+        resetBtn.addEventListener('click', () => {
+            items.forEach(item => {
+                item.level = 0;
+                item.attempts = 0;
+                item.successes = 0;
+                item.maxLevel = 0;
+            });
+            status.textContent = 'Game reset. Click on items to attempt enchantment';
+            status.style.color = '#ecf0f1';
+            updateStats();
+            drawGame();
+        });
+
+        // Initial setup
+        updateStats();
+        drawGame();
+    </script>
+</body>
+</html>
