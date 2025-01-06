@@ -22,7 +22,7 @@
             font-size: 18px;
             margin: 10px;
             color: #ecf0f1;
-            height: 50px;
+            height: 30px;
             text-align: center;
         }
         .controls {
@@ -65,18 +65,17 @@
     </style>
 </head>
 <body>
-    <h1>Magic Item Enchanter</h1>
-    <div class="controls">
-        <button id="resetBtn">Reset Game</button>
-    </div>
-    <div id="status">Click on items to attempt enchantment</div>
+    <h1>Magic Item Enchantment Simulator</h1>
+    <div id="status">Click on items to attempt enchantment using a magic scroll</div>
     <div class="odds-display">Current Success Rate: 33% (1 in 3 chance)</div>
     <canvas id="gameCanvas" width="600" height="400"></canvas>
     <div id="stats">
         <h3>Enhancement Statistics</h3>
         <div class="stat-grid" id="statsGrid"></div>
     </div>
-
+    <div class="controls">
+        <button id="resetBtn">Reset Game</button>
+    </div>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -266,7 +265,7 @@
                 item.successes = 0;
                 item.maxLevel = 0;
             });
-            status.textContent = 'Game reset. Click on items to attempt enchantment';
+            status.textContent = 'Game reset. Click on items to attempt enchantment again using a magic scroll';
             status.style.color = '#ecf0f1';
             updateStats();
             drawGame();
