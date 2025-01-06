@@ -89,53 +89,165 @@
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.scale(scale, scale);
+
+                // Draw the blade
                 ctx.beginPath();
-                ctx.moveTo(0, 20);
-                ctx.lineTo(10, 0);
-                ctx.lineTo(20, 20);
-                ctx.lineTo(10, 40);
+                ctx.moveTo(10, 0);
+                ctx.lineTo(15, 40);
+                ctx.lineTo(5, 40);
                 ctx.closePath();
-                ctx.moveTo(10, 40);
-                ctx.lineTo(10, 50);
+                ctx.fillStyle = '#C0C0C0'; // Silver color for the blade
+                ctx.fill();
+                ctx.strokeStyle = '#808080'; // Darker gray for the blade outline
                 ctx.stroke();
+
+                // Draw the guard
+                ctx.beginPath();
+                ctx.moveTo(0, 40);
+                ctx.lineTo(20, 40);
+                ctx.lineTo(20, 45);
+                ctx.lineTo(0, 45);
+                ctx.closePath();
+                ctx.fillStyle = '#FFD700'; // Gold color for the guard
+                ctx.fill();
+                ctx.strokeStyle = '#B8860B'; // Darker gold for the guard outline
+                ctx.stroke();
+
+                // Draw the handle
+                ctx.beginPath();
+                ctx.moveTo(7, 45);
+                ctx.lineTo(13, 45);
+                ctx.lineTo(13, 60);
+                ctx.lineTo(7, 60);
+                ctx.closePath();
+                ctx.fillStyle = '#8B4513'; // Brown color for the handle
+                ctx.fill();
+                ctx.strokeStyle = '#654321'; // Darker brown for the handle outline
+                ctx.stroke();
+
+                // Draw the pommel
+                ctx.beginPath();
+                ctx.arc(10, 60, 3, 0, Math.PI * 2, true);
+                ctx.fillStyle = '#FFD700'; // Gold color for the pommel
+                ctx.fill();
+                ctx.strokeStyle = '#B8860B'; // Darker gold for the pommel outline
+                ctx.stroke();
+
                 ctx.restore();
             },
             staff: (x, y, scale = 1) => {
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.scale(scale, scale);
+
+                // Draw the shaft
                 ctx.beginPath();
                 ctx.moveTo(10, 0);
-                ctx.lineTo(10, 50);
-                ctx.moveTo(0, 5);
-                ctx.arc(10, 5, 10, 0, Math.PI * 2);
+                ctx.lineTo(10, 70);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = '#8B4513'; // Brown color for the shaft
                 ctx.stroke();
+
+                // Draw the orb
+                ctx.beginPath();
+                ctx.arc(10, 5, 10, 0, Math.PI * 2);
+                ctx.fillStyle = '#1E90FF'; // Blue color for the orb
+                ctx.fill();
+                ctx.strokeStyle = '#00008B'; // Dark blue for the orb outline
+                ctx.stroke();
+
+                // Draw decorative elements on the shaft
+                ctx.beginPath();
+                ctx.moveTo(8, 20);
+                ctx.lineTo(12, 20);
+                ctx.moveTo(8, 30);
+                ctx.lineTo(12, 30);
+                ctx.moveTo(8, 40);
+                ctx.lineTo(12, 40);
+                ctx.moveTo(8, 50);
+                ctx.lineTo(12, 50);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#FFD700'; // Gold color for the decorative elements
+                ctx.stroke();
+
                 ctx.restore();
             },
             ring: (x, y, scale = 1) => {
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.scale(scale, scale);
+
+                // Draw the outer circle of the ring
                 ctx.beginPath();
                 ctx.arc(10, 10, 8, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFD700'; // Gold color for the ring
+                ctx.fill();
+                ctx.strokeStyle = '#B8860B'; // Darker gold for the ring outline
                 ctx.stroke();
+
+                // Draw the inner circle of the ring (hole)
+                ctx.beginPath();
+                ctx.arc(10, 10, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFFFFF'; // White color for the hole
+                ctx.fill();
+
+                // Draw the gemstone
+                ctx.beginPath();
+                ctx.arc(10, 5, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#1E90FF'; // Blue color for the gemstone
+                ctx.fill();
+                ctx.strokeStyle = '#00008B'; // Dark blue for the gemstone outline
+                ctx.stroke();
+
                 ctx.restore();
             },
             amulet: (x, y, scale = 1) => {
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.scale(scale, scale);
+
+                // Draw the chain
                 ctx.beginPath();
-                ctx.arc(10, 15, 10, 0, Math.PI * 2);
                 ctx.moveTo(10, 0);
                 ctx.lineTo(10, 5);
+                ctx.strokeStyle = '#B8860B'; // Darker gold for the chain
+                ctx.lineWidth = 2;
                 ctx.stroke();
+
+                // Draw the amulet base
+                ctx.beginPath();
+                ctx.arc(10, 15, 10, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFD700'; // Gold color for the amulet
+                ctx.fill();
+                ctx.strokeStyle = '#B8860B'; // Darker gold for the amulet outline
+                ctx.stroke();
+
+                // Draw the decorative pattern
+                ctx.beginPath();
+                ctx.moveTo(5, 15);
+                ctx.lineTo(15, 15);
+                ctx.moveTo(10, 10);
+                ctx.lineTo(10, 20);
+                ctx.strokeStyle = '#8B4513'; // Brown color for the decorative pattern
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw the gemstone
+                ctx.beginPath();
+                ctx.arc(10, 15, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#1E90FF'; // Blue color for the gemstone
+                ctx.fill();
+                ctx.strokeStyle = '#00008B'; // Dark blue for the gemstone outline
+                ctx.stroke();
+
                 ctx.restore();
             },
             shield: (x, y, scale = 1) => {
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.scale(scale, scale);
+
+                // Draw the shield base
                 ctx.beginPath();
                 ctx.moveTo(0, 10);
                 ctx.lineTo(10, 0);
@@ -144,7 +256,33 @@
                 ctx.lineTo(10, 40);
                 ctx.lineTo(0, 30);
                 ctx.closePath();
+                ctx.fillStyle = '#B0C4DE'; // Light steel blue color for the shield base
+                ctx.fill();
+                ctx.strokeStyle = '#4682B4'; // Steel blue color for the shield outline
+                ctx.lineWidth = 2;
                 ctx.stroke();
+
+                // Draw the shield border
+                ctx.beginPath();
+                ctx.moveTo(2, 12);
+                ctx.lineTo(10, 2);
+                ctx.lineTo(18, 12);
+                ctx.lineTo(18, 28);
+                ctx.lineTo(10, 38);
+                ctx.lineTo(2, 28);
+                ctx.closePath();
+                ctx.strokeStyle = '#4682B4'; // Steel blue color for the shield border
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw the central emblem
+                ctx.beginPath();
+                ctx.arc(10, 20, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFD700'; // Gold color for the emblem
+                ctx.fill();
+                ctx.strokeStyle = '#B8860B'; // Darker gold for the emblem outline
+                ctx.stroke();
+
                 ctx.restore();
             }
         };
